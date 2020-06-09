@@ -56,8 +56,11 @@ module.exports = {
         return response.json(dev);
     },
     async destroy(request, response) {
-        const dev = await Dev.findByIdAndRemove(request.params.id);
-        console.log(dev);
-        return response.send({ message: 'excluido com sucesso' });
+        try {
+            await Dev.findByIdAndRemove(request.params.id);
+            return response.send({ message: 'excluido com sucesso' });
+        } catch (err) {
+            return response.send({ message: 'erro ao excluir' });
+        }
     },
 };
