@@ -37,5 +37,16 @@ module.exports = {
         } else {
             return res.json({ message: 'usuario ja cadastrado' });
         }
-    }
+    },
+    async show(request, response) {
+        const dev = await Dev.findById(request.params.id)
+
+        return response.json(dev);
+    },
+    async update(request, response) {
+
+    },
+    async destroy(request, response) {
+
+    },
 };
