@@ -45,6 +45,15 @@ module.exports = {
     },
     async update(request, response) {
 
+        const { techs, ...devBody } = request.body;
+
+        const techsArray = paseStringAsArray(techs);
+
+        devBody.techs = techsArray;
+
+        const dev = await Dev.findByIdAndUpdate(request.params.id, devBody, { new: true });
+
+        return response.json(dev);
     },
     async destroy(request, response) {
 
